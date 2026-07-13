@@ -1,23 +1,17 @@
-[HttpGet("reporte-mensual")]
-public async Task<IActionResult> GenerarReporteMensual()
+app.MapGet("/reporte-mensual", async (AppDbContext dbContext) =>
 {
-    // Obtiene todos los pacientes y sus atenciones de la base de datos
-    var pacientes = _dbContext.Pacientes
-        .Include(p => p.Atenciones)
-        .ToList();
-
-    var resultado = new List<ReporteDto>();
-
-    foreach (var p in pacientes)
-    {
-        if (p.Estado == "Activo" && p.Atenciones.Any(a => a.RequiereAuditoria))
+    var resultado = await dbContext.Pacientes
+        .AsNoTracking()
+        .Where(p => p.Estado == "Activo")
+        .Where(p => p.Atenciones.Any(a => a.RequiereAuditoria))
+        .Select(p => new ReporteDto
         {
-            resultado.Add(new ReporteDto
-            {
             NombreCompleto = p.Nombre + " " + p.Apellido,
-            TotalAuditar = p.Atenciones.Where(a => a.RequiereAuditoria).Sum(a => a.Valor)
-            });
-        }
-    }
-    return Ok(resultado);
-}
+            TotalAuditar = p.Atenciones
+                .Where(a => a.RequiereAuditoria)
+                .Sum(a => a.Valor)
+        })
+        .ToListAsync();
+
+    return Results.Ok(resultado);
+});
