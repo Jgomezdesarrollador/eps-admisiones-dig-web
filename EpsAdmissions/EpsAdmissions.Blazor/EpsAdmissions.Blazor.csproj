@@ -7,4 +7,11 @@
     <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Hubs\" />
+    <Folder Include="Shared\" />
+    <Folder Include="Services\" />
+    <Folder Include="Pages\" />
+  </ItemGroup>
+
 </Project>

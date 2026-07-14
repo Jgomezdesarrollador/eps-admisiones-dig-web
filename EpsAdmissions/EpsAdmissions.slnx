@@ -7,4 +7,5 @@
     <Project Path="EpsAdmissions.Infrastructure/EpsAdmissions.Infrastructure.csproj" />
   </Folder>
   <Folder Name="/tests/" />
+  <Project Path="EpsAdmissions.Tests/EpsAdmissions.Tests.csproj" Id="5663f782-cabb-45c7-a2b1-f37c466f3ab2" />
 </Solution>

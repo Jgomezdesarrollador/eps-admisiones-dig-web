@@ -15,4 +15,10 @@
     <ProjectReference Include="..\EpsAdmissions.Infrastructure\EpsAdmissions.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Configuration\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Middleware\" />
+  </ItemGroup>
+
 </Project>

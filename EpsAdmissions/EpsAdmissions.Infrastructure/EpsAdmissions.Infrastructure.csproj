@@ -10,4 +10,16 @@
     <ProjectReference Include="..\EpsAdmissions.Domain\EpsAdmissions.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="BackgroundServices\" />
+    <Folder Include="Configurations\" />
+    <Folder Include="DependencyInjection\" />
+    <Folder Include="Messaging\" />
+    <Folder Include="Persistence\Mongo\" />
+    <Folder Include="Persistence\Sql\" />
+    <Folder Include="SignalR\" />
+    <Folder Include="Services\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
 </Project>
