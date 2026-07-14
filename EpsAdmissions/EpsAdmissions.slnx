@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="EpsAdmissions.Api/EpsAdmissions.Api.csproj" Id="a80e4be1-3f7f-4731-89fa-d1b5f9487506" />
+    <Project Path="EpsAdmissions.Application/EpsAdmissions.Application.csproj" Id="d43035b6-ecfc-49f1-ad03-582fc8527f7f" />
+    <Project Path="EpsAdmissions.Blazor/EpsAdmissions.Blazor.csproj" />
+    <Project Path="EpsAdmissions.Domain/EpsAdmissions.Domain.csproj" />
+    <Project Path="EpsAdmissions.Infrastructure/EpsAdmissions.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/" />
+</Solution>

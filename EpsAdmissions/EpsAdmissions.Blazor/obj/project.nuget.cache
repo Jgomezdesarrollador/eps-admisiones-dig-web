@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "lF12NU/4PrI=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jonathan.gomez\\Git\\GitHub\\eps-admisiones-dig-web\\EpsAdmissions\\EpsAdmissions.Blazor\\EpsAdmissions.Blazor.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jonathan.gomez\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.8\\microsoft.aspnetcore.app.internal.assets.10.0.8.nupkg.sha512"
+  ],
+  "logs": []
+}

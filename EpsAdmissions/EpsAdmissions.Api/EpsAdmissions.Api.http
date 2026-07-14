@@ -1,0 +1,6 @@
+@EpsAdmissions.Api_HostAddress = http://localhost:5064
+
+GET {{EpsAdmissions.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
