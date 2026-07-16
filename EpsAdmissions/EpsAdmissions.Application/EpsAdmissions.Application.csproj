@@ -7,17 +7,31 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EpsAdmissions.Domain\EpsAdmissions.Domain.csproj" />
+    <Compile Remove="Behaviors\**" />
+    <Compile Remove="Commands\**" />
+    <Compile Remove="Common\**" />
+    <Compile Remove="Mappings\**" />
+    <Compile Remove="Queries\**" />
+    <Compile Remove="Services\**" />
+    <Compile Remove="Validators\**" />
+    <EmbeddedResource Remove="Behaviors\**" />
+    <EmbeddedResource Remove="Commands\**" />
+    <EmbeddedResource Remove="Common\**" />
+    <EmbeddedResource Remove="Mappings\**" />
+    <EmbeddedResource Remove="Queries\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <EmbeddedResource Remove="Validators\**" />
+    <None Remove="Behaviors\**" />
+    <None Remove="Commands\**" />
+    <None Remove="Common\**" />
+    <None Remove="Mappings\**" />
+    <None Remove="Queries\**" />
+    <None Remove="Services\**" />
+    <None Remove="Validators\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Behaviors\" />
-    <Folder Include="Commands\" />
-    <Folder Include="Common\" />
-    <Folder Include="Mappings\" />
-    <Folder Include="Validators\" />
-    <Folder Include="Services\" />
-    <Folder Include="Queries\" />
+    <ProjectReference Include="..\EpsAdmissions.Domain\EpsAdmissions.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -5,8 +5,7 @@ namespace EpsAdmissions.Infrastructure.Persistence.Mongo.Mappers;
 
 public static class ClinicalHistoryMapper
 {
-    public static ClinicalHistoryDocument ToDocument(
-        AdmissionRequest request)
+    public static ClinicalHistoryDocument ToDocument(AdmissionRequest request)
     {
         return new ClinicalHistoryDocument
         {
