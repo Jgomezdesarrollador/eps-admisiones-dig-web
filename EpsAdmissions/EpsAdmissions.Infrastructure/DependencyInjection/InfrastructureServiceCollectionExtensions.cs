@@ -1,4 +1,7 @@
 ﻿using EpsAdmissions.Application.Interfaces;
+using EpsAdmissions.Application.Interfaces.Messaging;
+using EpsAdmissions.Infrastructure.BackgroundServices;
+using EpsAdmissions.Infrastructure.Messaging;
 using EpsAdmissions.Infrastructure.Persistence.Mongo.Context;
 using EpsAdmissions.Infrastructure.Persistence.Mongo.Settings;
 using EpsAdmissions.Infrastructure.Persistence.Sql.Context;
@@ -56,6 +59,18 @@ public static class InfrastructureServiceCollectionExtensions
         services.AddScoped<IOutboxRepository, OutboxRepository>();
 
         services.AddScoped<IClinicalHistoryStorage, MongoClinicalHistoryStorage>();
+
+        #endregion
+
+        #region Background Services
+
+        services.AddHostedService<OutboxProcessorBackgroundService>();
+
+        #endregion
+
+        #region Messaging
+
+        services.AddScoped<IAdmissionEventPublisher, SignalRAdmissionEventPublisher>();
 
         #endregion
 

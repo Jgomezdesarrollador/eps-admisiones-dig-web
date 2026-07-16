@@ -1,5 +1,6 @@
 using EpsAdmissions.Application.DependencyInjection;
 using EpsAdmissions.Infrastructure.DependencyInjection;
+using EpsAdmissions.Infrastructure.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddApplication();
 
 builder.Services.AddInfrastructure(builder.Configuration);
+
+builder.Services.AddSignalR();
 
 builder.Services.AddControllers();
 
@@ -29,6 +32,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<AdmissionHub>("/hubs/admissions");
 
 #endregion
 

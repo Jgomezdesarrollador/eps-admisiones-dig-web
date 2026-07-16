@@ -7,12 +7,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Common\" />
-    <Folder Include="Events\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="ValueObjects\" />
-    <Folder Include="Specifications\" />
+    <Compile Remove="Common\**" />
+    <Compile Remove="Events\**" />
+    <Compile Remove="Exceptions\**" />
+    <Compile Remove="Interfaces\**" />
+    <Compile Remove="Specifications\**" />
+    <Compile Remove="ValueObjects\**" />
+    <EmbeddedResource Remove="Common\**" />
+    <EmbeddedResource Remove="Events\**" />
+    <EmbeddedResource Remove="Exceptions\**" />
+    <EmbeddedResource Remove="Interfaces\**" />
+    <EmbeddedResource Remove="Specifications\**" />
+    <EmbeddedResource Remove="ValueObjects\**" />
+    <None Remove="Common\**" />
+    <None Remove="Events\**" />
+    <None Remove="Exceptions\**" />
+    <None Remove="Interfaces\**" />
+    <None Remove="Specifications\**" />
+    <None Remove="ValueObjects\**" />
   </ItemGroup>
 
 </Project>
