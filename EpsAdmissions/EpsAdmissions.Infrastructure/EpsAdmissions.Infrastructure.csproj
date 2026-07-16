@@ -7,21 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="BackgroundServices\**" />
     <Compile Remove="Configurations\**" />
-    <Compile Remove="Messaging\**" />
     <Compile Remove="Services\**" />
-    <Compile Remove="SignalR\**" />
-    <EmbeddedResource Remove="BackgroundServices\**" />
     <EmbeddedResource Remove="Configurations\**" />
-    <EmbeddedResource Remove="Messaging\**" />
     <EmbeddedResource Remove="Services\**" />
-    <EmbeddedResource Remove="SignalR\**" />
-    <None Remove="BackgroundServices\**" />
     <None Remove="Configurations\**" />
-    <None Remove="Messaging\**" />
     <None Remove="Services\**" />
-    <None Remove="SignalR\**" />
   </ItemGroup>
 
   <ItemGroup>

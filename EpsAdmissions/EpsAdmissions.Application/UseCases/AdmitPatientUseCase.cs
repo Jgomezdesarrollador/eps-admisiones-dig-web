@@ -45,6 +45,7 @@ public sealed class AdmitPatientUseCase(
         await outboxRepository.AddAsync(outboxMessage, cancellationToken);
 
         // 6. Commit SQL
+        
         await unitOfWork.SaveChangesAsync(cancellationToken);
 
         logger.LogInformation("Admission completed successfully for patient {Document}", request.Patient.Document);
