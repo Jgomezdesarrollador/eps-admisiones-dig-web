@@ -7,16 +7,26 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EpsAdmissions.Application\EpsAdmissions.Application.csproj" />
-    <ProjectReference Include="..\EpsAdmissions.Domain\EpsAdmissions.Domain.csproj" />
+    <Compile Remove="BackgroundServices\**" />
+    <Compile Remove="Configurations\**" />
+    <Compile Remove="Messaging\**" />
+    <Compile Remove="Services\**" />
+    <Compile Remove="SignalR\**" />
+    <EmbeddedResource Remove="BackgroundServices\**" />
+    <EmbeddedResource Remove="Configurations\**" />
+    <EmbeddedResource Remove="Messaging\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <EmbeddedResource Remove="SignalR\**" />
+    <None Remove="BackgroundServices\**" />
+    <None Remove="Configurations\**" />
+    <None Remove="Messaging\**" />
+    <None Remove="Services\**" />
+    <None Remove="SignalR\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BackgroundServices\" />
-    <Folder Include="Configurations\" />
-    <Folder Include="Messaging\" />
-    <Folder Include="SignalR\" />
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\EpsAdmissions.Application\EpsAdmissions.Application.csproj" />
+    <ProjectReference Include="..\EpsAdmissions.Domain\EpsAdmissions.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -7,18 +7,31 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Configuration\**" />
+    <Compile Remove="Extensions\**" />
+    <Compile Remove="Middleware\**" />
+    <Content Remove="Configuration\**" />
+    <Content Remove="Extensions\**" />
+    <Content Remove="Middleware\**" />
+    <EmbeddedResource Remove="Configuration\**" />
+    <EmbeddedResource Remove="Extensions\**" />
+    <EmbeddedResource Remove="Middleware\**" />
+    <None Remove="Configuration\**" />
+    <None Remove="Extensions\**" />
+    <None Remove="Middleware\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.10">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\EpsAdmissions.Application\EpsAdmissions.Application.csproj" />
     <ProjectReference Include="..\EpsAdmissions.Infrastructure\EpsAdmissions.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Configuration\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="Middleware\" />
   </ItemGroup>
 
 </Project>
