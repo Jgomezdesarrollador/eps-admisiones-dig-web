@@ -8,19 +8,16 @@
 
   <ItemGroup>
     <Compile Remove="Common\**" />
-    <Compile Remove="Events\**" />
     <Compile Remove="Exceptions\**" />
     <Compile Remove="Interfaces\**" />
     <Compile Remove="Specifications\**" />
     <Compile Remove="ValueObjects\**" />
     <EmbeddedResource Remove="Common\**" />
-    <EmbeddedResource Remove="Events\**" />
     <EmbeddedResource Remove="Exceptions\**" />
     <EmbeddedResource Remove="Interfaces\**" />
     <EmbeddedResource Remove="Specifications\**" />
     <EmbeddedResource Remove="ValueObjects\**" />
     <None Remove="Common\**" />
-    <None Remove="Events\**" />
     <None Remove="Exceptions\**" />
     <None Remove="Interfaces\**" />
     <None Remove="Specifications\**" />
