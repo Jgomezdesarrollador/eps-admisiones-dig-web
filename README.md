@@ -101,6 +101,54 @@ flowchart LR
 ```
 ---
 
+## Consideraciones de Arquitectura para Producción
+
+Aunque esta solución corresponde a una **Prueba de Concepto (PoC)**, a continuación se describen las estrategias recomendadas para un entorno productivo en la nube.
+
+### 1. Escalamiento horizontal de Blazor Server
+
+Blazor Server mantiene un estado de conexión (*Circuit*) mediante SignalR, por lo que al escalar horizontalmente es necesario garantizar que las conexiones y el estado de los usuarios permanezcan disponibles.
+
+Para una implementación en producción se recomienda:
+
+* Configurar **Azure SignalR Service** para desacoplar la gestión de conexiones de los App Services.
+* Habilitar **ARR Affinity (Sticky Sessions)** cuando sea necesario mantener la afinidad de las sesiones entre el cliente y una instancia específica.
+* Configurar el escalado automático de los App Services con base en métricas como CPU, memoria o número de conexiones.
+* Supervisar el consumo de conexiones mediante **Azure Monitor** y **Application Insights** para evitar el agotamiento de sockets.
+
+Con esta estrategia, la aplicación puede escalar horizontalmente sin afectar la experiencia de los usuarios conectados.
+
+---
+
+### 2. Almacenamiento seguro de cadenas de conexión
+
+En un entorno productivo las cadenas de conexión nunca deberían almacenarse en archivos como `appsettings.json` ni incluirse en el repositorio.
+
+La estrategia recomendada consiste en:
+
+* Almacenar las cadenas de conexión de **SQL Server** y **MongoDB** en **Azure Key Vault**.
+* Utilizar **Managed Identity** para que la aplicación obtenga los secretos de forma segura sin necesidad de almacenar credenciales.
+* Configurar el acceso a los secretos mediante políticas de acceso y el principio de menor privilegio.
+* Mantener separados los secretos por ambiente (Desarrollo, Pruebas y Producción).
+
+Este enfoque reduce la exposición de credenciales y contribuye al cumplimiento de estándares de seguridad y normativas como **HIPAA**, al proteger la información sensible y centralizar la administración de secretos.
+
+---
+
+### 3. Tolerancia a fallos de la base de datos SQL Server
+
+Si SQL Server presenta una indisponibilidad temporal (por ejemplo, una caída de 5 segundos), la aplicación debe ser capaz de recuperarse sin perder la información de la admisión.
+
+Las estrategias recomendadas son:
+
+* Implementar políticas de reintento utilizando **Polly**, aplicando **Exponential Backoff** para reintentar automáticamente las operaciones transitorias.
+* Aprovechar la estrategia de reintentos integrada de **Entity Framework Core** (`EnableRetryOnFailure`) para conexiones a SQL Server.
+* Mantener el patrón **Outbox**, garantizando que los eventos solo se publiquen una vez que la transacción haya sido confirmada exitosamente.
+* En escenarios de mayor criticidad, incorporar un sistema de mensajería como **Azure Service Bus** o **RabbitMQ**, permitiendo que las solicitudes sean procesadas de manera asíncrona cuando el servicio de base de datos vuelva a estar disponible.
+
+Estas estrategias incrementan la resiliencia de la solución y minimizan el riesgo de pérdida de información ante fallos transitorios de la infraestructura.
+
+
 # Estrategia de Persistencia
 
 La solución implementa un enfoque de **persistencia políglota**, donde cada tecnología es utilizada según sus fortalezas.
