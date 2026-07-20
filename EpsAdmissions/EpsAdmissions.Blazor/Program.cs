@@ -1,10 +1,16 @@
 using EpsAdmissions.Blazor.Components;
+using EpsAdmissions.Blazor.Configuration;
+using EpsAdmissions.Blazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+
+builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection(ApiSettings.SectionName));
+builder.Services.AddSingleton<AdmissionNotificationService>();
 
 var app = builder.Build();
 
