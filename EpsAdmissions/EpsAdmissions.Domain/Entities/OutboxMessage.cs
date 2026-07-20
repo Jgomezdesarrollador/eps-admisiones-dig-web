@@ -1,24 +1,21 @@
 ﻿namespace EpsAdmissions.Domain.Entities;
 
-public class OutboxMessage
+public sealed class OutboxMessage
 {
     public Guid Id { get; private set; }
-
-    public string EventType { get; private set; }
-
-    public string Payload { get; private set; }
-
-    public bool Processed { get; private set; }
-
-    public int RetryCount { get; private set; }
-
-    public DateTime CreatedAt { get; private set; }
-
-    public DateTime? ProcessedAt { get; private set; }
     public string AggregateId { get; private set; }
+    public string EventType { get; private set; }
+    public string Payload { get; private set; }
+    public bool Processed { get; private set; }
+    public int RetryCount { get; private set; }
+    public DateTime CreatedAt { get; private set; }
+    public DateTime? ProcessedAt { get; private set; }
 
     private OutboxMessage()
     {
+        AggregateId = string.Empty;
+        EventType = string.Empty;
+        Payload = string.Empty;
     }
 
     public OutboxMessage(string aggregateId, string eventType, string payload)

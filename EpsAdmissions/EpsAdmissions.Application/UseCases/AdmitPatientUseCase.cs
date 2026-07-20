@@ -1,8 +1,8 @@
 ﻿using EpsAdmissions.Application.DTOs.Admissions;
-using EpsAdmissions.Application.DTOs.Events;
 using EpsAdmissions.Application.DTOs.Responses;
 using EpsAdmissions.Application.Interfaces;
 using EpsAdmissions.Domain.Entities;
+using EpsAdmissions.Domain.Events;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
 
@@ -45,6 +45,7 @@ public sealed class AdmitPatientUseCase(
         await outboxRepository.AddAsync(outboxMessage, cancellationToken);
 
         // 6. Commit SQL
+        
         await unitOfWork.SaveChangesAsync(cancellationToken);
 
         logger.LogInformation("Admission completed successfully for patient {Document}", request.Patient.Document);
