@@ -1,8 +1,8 @@
 ﻿using EpsAdmissions.Application.DTOs.Admissions;
-using EpsAdmissions.Application.DTOs.Events;
 using EpsAdmissions.Application.DTOs.Responses;
 using EpsAdmissions.Application.Interfaces;
 using EpsAdmissions.Domain.Entities;
+using EpsAdmissions.Domain.Events;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
 

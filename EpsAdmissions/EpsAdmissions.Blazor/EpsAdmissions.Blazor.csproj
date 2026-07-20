@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -8,10 +8,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Hubs\" />
-    <Folder Include="Shared\" />
-    <Folder Include="Services\" />
-    <Folder Include="Pages\" />
+    <Compile Remove="Hubs\**" />
+    <Compile Remove="Shared\**" />
+    <Content Remove="Hubs\**" />
+    <Content Remove="Shared\**" />
+    <EmbeddedResource Remove="Hubs\**" />
+    <EmbeddedResource Remove="Shared\**" />
+    <None Remove="Hubs\**" />
+    <None Remove="Shared\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="10.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EpsAdmissions.Domain\EpsAdmissions.Domain.csproj" />
   </ItemGroup>
 
 </Project>

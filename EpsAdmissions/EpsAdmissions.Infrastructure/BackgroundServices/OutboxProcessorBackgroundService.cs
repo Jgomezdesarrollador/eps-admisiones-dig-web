@@ -30,6 +30,8 @@ public sealed class OutboxProcessorBackgroundService(
 
                 var messages = await repository.GetPendingAsync(stoppingToken);
 
+                logger.LogInformation("Mensajes pendientes: {Count}", messages.Count);
+
                 foreach (var message in messages)
                 {
                     logger.LogInformation("Procesando evento {EventType}",message.EventType);

@@ -1,0 +1,83 @@
+﻿@page "/dashboard-admissions"
+
+@using EpsAdmissions.Domain.Events
+@using EpsAdmissions.Blazor.Services
+
+@inject AdmissionNotificationService NotificationService
+
+@implements IAsyncDisposable
+
+<PageTitle>Dashboard Admisiones</PageTitle>
+
+<h3>Dashboard de Admisiones</h3>
+
+@if (!admissions.Any())
+{
+    <p>No hay admisiones recibidas.</p>
+}
+else
+{
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+                <th>Admission Id</th>
+                <th>Documento</th>
+                <th>Mongo Id</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        @foreach (var admission in admissions)
+        {
+            <tr>
+
+                <td>@admission.AdmissionId</td>
+
+                <td>@admission.PatientDocument</td>
+
+                <td>@admission.MongoDocumentId</td>
+
+            </tr>
+        }
+
+        </tbody>
+
+    </table>
+}
+
+@code
+{
+    private readonly List<AdmissionCreatedEvent> admissions = [];
+
+    private void OnAdmissionReceived(
+        AdmissionCreatedEvent admission)
+    {
+        _ = InvokeAsync(() =>
+        {
+            admissions.Insert(0, admission);
+
+            StateHasChanged();
+        });
+    }
+
+    public ValueTask DisposeAsync()
+    {
+
+        NotificationService.AdmissionReceived -= OnAdmissionReceived;
+
+        return ValueTask.CompletedTask;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+            return;
+
+        NotificationService.AdmissionReceived -= OnAdmissionReceived;
+        NotificationService.AdmissionReceived += OnAdmissionReceived;
+
+        await NotificationService.StartAsync();
+    }
+}
