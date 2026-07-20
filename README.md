@@ -101,11 +101,11 @@ flowchart LR
 ```
 ---
 
-## Consideraciones de Arquitectura para Producción
+# Consideraciones de Arquitectura para Producción
 
 Aunque esta solución corresponde a una **Prueba de Concepto (PoC)**, a continuación se describen las estrategias recomendadas para un entorno productivo en la nube.
 
-### 1. Escalamiento horizontal de Blazor Server
+## 1. Escalamiento horizontal de Blazor Server
 
 Blazor Server mantiene un estado de conexión (*Circuit*) mediante SignalR, por lo que al escalar horizontalmente es necesario garantizar que las conexiones y el estado de los usuarios permanezcan disponibles.
 
@@ -120,7 +120,7 @@ Con esta estrategia, la aplicación puede escalar horizontalmente sin afectar la
 
 ---
 
-### 2. Almacenamiento seguro de cadenas de conexión
+## 2. Almacenamiento seguro de cadenas de conexión
 
 En un entorno productivo las cadenas de conexión nunca deberían almacenarse en archivos como `appsettings.json` ni incluirse en el repositorio.
 
@@ -135,7 +135,7 @@ Este enfoque reduce la exposición de credenciales y contribuye al cumplimiento 
 
 ---
 
-### 3. Tolerancia a fallos de la base de datos SQL Server
+## 3. Tolerancia a fallos de la base de datos SQL Server
 
 Si SQL Server presenta una indisponibilidad temporal (por ejemplo, una caída de 5 segundos), la aplicación debe ser capaz de recuperarse sin perder la información de la admisión.
 
@@ -147,7 +147,7 @@ Las estrategias recomendadas son:
 * En escenarios de mayor criticidad, incorporar un sistema de mensajería como **Azure Service Bus** o **RabbitMQ**, permitiendo que las solicitudes sean procesadas de manera asíncrona cuando el servicio de base de datos vuelva a estar disponible.
 
 Estas estrategias incrementan la resiliencia de la solución y minimizan el riesgo de pérdida de información ante fallos transitorios de la infraestructura.
-
+---
 
 # Estrategia de Persistencia
 
