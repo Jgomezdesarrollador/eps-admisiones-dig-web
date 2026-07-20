@@ -22,12 +22,14 @@ public sealed class AdmitPatientUseCase(
 
         // 1. Guardar historia clínica en Mongo
         var mongoDocumentId = await clinicalHistoryStorage.SaveAsync(request, cancellationToken);
+        logger.LogInformation("Clinical history stored in MongoDB. DocumentId: {MongoDocumentId}", mongoDocumentId);
 
         // 2. Crear la entidad del dominio
         var admission = new Admission(request.Patient.Document, request.Copayment.Amount, mongoDocumentId);
 
         // 3. Guardar en SQL
         await admissionRepository.AddAsync(admission, cancellationToken);
+        logger.LogInformation("Admission registered in SQL Server. AdmissionId: {AdmissionId}", admission.Id);
 
         // 4. Crear evento Outbox
         var admissionCreatedEvent = new AdmissionCreatedEvent
@@ -43,10 +45,11 @@ public sealed class AdmitPatientUseCase(
 
         // 5. Guardar Outbox
         await outboxRepository.AddAsync(outboxMessage, cancellationToken);
+        logger.LogInformation("Outbox event created. EventType: {EventType}", nameof(AdmissionCreatedEvent));
 
-        // 6. Commit SQL
-        
+        // 6. Commit SQL  
         await unitOfWork.SaveChangesAsync(cancellationToken);
+        logger.LogInformation("Database transaction committed successfully.");
 
         logger.LogInformation("Admission completed successfully for patient {Document}", request.Patient.Document);
 
